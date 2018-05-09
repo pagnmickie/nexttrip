@@ -1,0 +1,6 @@
+*temp*
+.idea/
+*.iml
+c.out
+*coverage*
+*DS_Store*
