@@ -1,65 +1,40 @@
 package main
 
 import (
-	"net/http"
-	"io/ioutil"
+	"os"
+	"log"
+	"./nextrip"
 	"fmt"
 )
 
-//const APIURL = "http://svc.metrotransit.org/NexTrip/"
-//const Headers = {"Content-Type": "application/json", "Accept": "application/json"}
-
-// http://svc.metrotransit.org/NexTrip/{ROUTE}/{DIRECTION}/{STOP}/?format=json
+//curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
 
 func main() {
-	//busRoute := GetBusRoute()
-	//direction := GetDirection()
-	//busStop := BusStop()
-	//fmt.Println(busRoute, direction, busStop)
-	//url := APIURL + busRoute +"/"+ direction + "/" + busStop + "?format=json"
-
-	resp, err := http.Get("http://svc.metrotransit.org/NexTrip/901/1/TF22?format=json")
-	if err != nil {
-		// handle err
+	args := os.Args[1:]
+	if len(args) != 3 {
+		log.Fatal("Please enter three arguments")
 	}
-	defer resp.Body.Close()
-	if resp.StatusCode == http.StatusOK {
-		bodyBytes, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			// handle err
-		}
-		bodyString := string(bodyBytes)
-		fmt.Print(bodyString)
-	}}
 
-// user enters the name of the route they want to use
-//func GetBusRoute() string {
-//	println("Enter bus route: ie: 901")
-//
-//	var input string
-//	fmt.Scanln(&input)
-//
-//	return input
-//}
-//
-//// after the route is selected, the GetDirections() function chooses which direction of travel
-//func GetDirection() string {
-//	println("Enter route direction: ie: 1")
-//
-//	var input string
-//	fmt.Scanln(&input)
-//
-//	return input
-//}
-//
-//// after the route and direction are selected, the BusStop() operation finds the trip starting point
-//func BusStop() string {
-//	println("Enter your bus stop: ie: TF22")
-//
-//	var input string
-//	fmt.Scanln(&input)
-//
-//	return input
-//}
+	routeArg := args[0]
+	stopArg := args[1]
+	directionArg := args[2]
 
+	route, err := nextrip.FindRouteByDescription(routeArg)
+	if err != nil {
+		log.Fatal(err)
+	}
 
+	direction, err1 := nextrip.FindRouteDirectionByText(route.Route, directionArg)
+	if err1 != nil {
+		log.Fatal(err1)
+	}
+
+	stop, err2 := nextrip.FindRouteStopByText(route.Route, direction.Value, stopArg)
+	if err2 != nil {
+		log.Fatal(err2)
+	}
+
+	nextTime, _ := nextrip.GetNextDeparture(route.Route, direction.Value, stop.Value)
+	fmt.Println(nextTime.DepartureText)
+
+}
