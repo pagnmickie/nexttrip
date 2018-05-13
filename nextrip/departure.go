@@ -10,18 +10,18 @@ import (
 )
 
 type Departure struct {
-	Actual           bool   `json:"Actual,omitempty"`
-	BlockNumber      int    `json:"BlockNumber,omitempty"`
-	DepartureText    string `json:"DepartureText,omitempty"`
-	DepartureTime    string `json:"DepartureTime,omitempty"`
-	Description      string `json:"Description,omitempty"`
-	Gate             string `json:"Gate,omitempty"`
-	Route            string `json:"Route,omitempty"`
-	RouteDirection   string `json:"RouteDirection,omitempty"`
-	Terminal         string `json:"Terminal,omitempty"`
-	VehicleHeading   int    `json:"VehicleHeading,omitempty"`
-	VehicleLatitude  int    `json:"VehicleLatitude,omitempty"`
-	VehicleLongitude int    `json:"VehicleLongitude,omitempty"`
+	Actual           bool    `json:"Actual,omitempty"`
+	BlockNumber      int     `json:"BlockNumber,omitempty"`
+	DepartureText    string  `json:"DepartureText,omitempty"`
+	DepartureTime    string  `json:"DepartureTime,omitempty"`
+	Description      string  `json:"Description,omitempty"`
+	Gate             string  `json:"Gate,omitempty"`
+	Route            string  `json:"Route,omitempty"`
+	RouteDirection   string  `json:"RouteDirection,omitempty"`
+	Terminal         string  `json:"Terminal,omitempty"`
+	VehicleHeading   int     `json:"VehicleHeading,omitempty"`
+	VehicleLatitude  float64 `json:"VehicleLatitude,omitempty"`
+	VehicleLongitude float64 `json:"VehicleLongitude,omitempty"`
 }
 
 const departuresUrl = "http://svc.metrotransit.org/NexTrip/%s/%s/%s?format=json"

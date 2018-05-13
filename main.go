@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"log"
 	"./nextrip"
-	"time"
+	"fmt"
 )
 
 //curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
@@ -38,5 +37,4 @@ func main() {
 	nextTime, _ := nextrip.GetNextDeparture(route.Route, direction.Value, stop.Value)
 	fmt.Println(nextTime.DepartureText)
 
-	fmt.Println(time.Now())
 }
