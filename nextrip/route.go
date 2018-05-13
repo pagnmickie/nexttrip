@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"log"
 	"errors"
+	"strings"
 )
 
 type Route struct {
@@ -21,7 +22,8 @@ func FindRouteByDescription(description string) (*Route, error) {
 	routes := convertResponseToRoute(response)
 
 	for _, route := range routes {
-		if route.Description == description {
+		if strings.Contains(strings.ToLower(route.Description), description) ||
+			strings.Contains(strings.ToLower(route.Route), description) {
 			return &route, nil
 		}
 	}
