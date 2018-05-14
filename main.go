@@ -41,5 +41,8 @@ func main() {
 		fmt.Println("Next bus @", nextDeparture.DepartureText)
 	}
 
-
+	/* 	TODO 1. Make the 'else' return next time in minutes
+		TODO 2. Handle & in text (tries to run bash)
+		TODO 3. Document code
+	*/
 }
