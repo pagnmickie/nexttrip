@@ -44,5 +44,6 @@ func main() {
 	/* 	TODO 1. Make the 'else' return next time in minutes
 		TODO 2. Handle & in text (tries to run bash)
 		TODO 3. Document code
+		TODO 4. Handle 'no more buses for the day'
 	*/
 }
