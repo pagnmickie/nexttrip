@@ -11,7 +11,7 @@ In a language of your choice, write a program which will tell you how long it is
 Eg, if you wanted to know the next bus leaving from our Brooklyn Park campus to our downtown campus:
 
 ``
-$ go run nextbus.go “Express - Target - Hwy 252 and 73rd Av P&R - Mpls” “Target North Campus Building F” “south”
+$ go run nextbus.go "Express - Target - Hwy 252 and 73rd Av P&R - Mpls" "Target North Campus Building F" "south"
 ``
 
 ``
@@ -22,7 +22,7 @@ _(note that that won’t return anything if the last bus for the day has already
 
 Or if you wanted to take the light rail from downtown to the Mall of America or the Airport:
 ``
-$ nextbus.py “METRO Blue Line” “Target Field Station Platform 1” “south”
+$ nextbus.py "METRO Blue Line" "Target Field Station Platform 1" "south"
  ``
  
  ``
