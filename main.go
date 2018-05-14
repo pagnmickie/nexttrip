@@ -34,7 +34,12 @@ func main() {
 		log.Fatal(err2)
 	}
 
-	nextTime, _ := nextrip.GetNextDeparture(route.Route, direction.Value, stop.Value)
-	fmt.Println(nextTime.DepartureText)
+	nextDeparture, _ := nextrip.GetNextDeparture(route.Route, direction.Value, stop.Value)
+	if nextDeparture.Actual == true {
+		fmt.Println(nextDeparture.DepartureText)
+	} else {
+		fmt.Println("Next bus @", nextDeparture.DepartureText)
+	}
+
 
 }
