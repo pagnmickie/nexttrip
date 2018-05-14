@@ -22,8 +22,8 @@ func FindRouteByDescription(description string) (*Route, error) {
 	routes := convertResponseToRoute(response)
 
 	for _, route := range routes {
-		if strings.Contains(strings.ToLower(route.Description), description) ||
-			strings.Contains(strings.ToLower(route.Route), description) {
+		if strings.Contains(strings.ToLower(route.Description), strings.ToLower(description)) ||
+			strings.Contains(strings.ToLower(route.Route), strings.ToLower(description)) {
 			return &route, nil
 		}
 	}
