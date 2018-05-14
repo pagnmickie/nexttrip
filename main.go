@@ -12,7 +12,7 @@ import (
 func main() {
 	args := os.Args[1:]
 	if len(args) != 3 {
-		log.Fatal("Please enter three arguments")
+		log.Fatal("Please enter the route, stop and direction for NexTrip time")
 	}
 
 	routeArg := args[0]
