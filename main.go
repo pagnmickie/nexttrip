@@ -11,6 +11,7 @@ import (
 
 func main() {
 	args := os.Args[1:]
+
 	if len(args) != 3 {
 		log.Fatal("Please enter the route, stop and direction for NexTrip time")
 	}
@@ -18,6 +19,7 @@ func main() {
 	routeArg := args[0]
 	stopArg := args[1]
 	directionArg := args[2]
+
 
 	route, err := nextrip.FindRouteByDescription(routeArg)
 	if err != nil {
@@ -42,8 +44,7 @@ func main() {
 	}
 
 	/* 	TODO 1. Make the 'else' return next time in minutes
-		TODO 2. Handle & in text (tries to run bash)
-		TODO 3. Document code
-		TODO 4. Handle 'no more buses for the day'
+		TODO 2. Document code
+	 	TODO 3. Handle 'no more buses for the day'
 	*/
 }
