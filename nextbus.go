@@ -12,6 +12,7 @@ import (
 func main() {
 	args := os.Args[1:]
 
+	// Error if incorrect number of arguments are provided
 	if len(args) != 3 {
 		log.Fatal("Please enter the route, stop and direction for NexTrip time")
 	}
@@ -20,31 +21,34 @@ func main() {
 	stopArg := args[1]
 	directionArg := args[2]
 
-
+	// Get route based on description
 	route, err := nextrip.FindRouteByDescription(routeArg)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Get direction based on direction text
 	direction, err1 := nextrip.FindRouteDirectionByText(route.Route, directionArg)
 	if err1 != nil {
 		log.Fatal(err1)
 	}
 
+	// Get stop based on stop text
 	stop, err2 := nextrip.FindRouteStopByText(route.Route, direction.Value, stopArg)
 	if err2 != nil {
 		log.Fatal(err2)
 	}
 
-	nextDeparture, _ := nextrip.GetNextDeparture(route.Route, direction.Value, stop.Value)
-	if nextDeparture.Actual == true {
+	// Calls API with arguments provided
+	nextDeparture, err3 := nextrip.GetNextDeparture(route.Route, direction.Value, stop.Value)
+	if err3 != nil {
+		fmt.Println("There are no more scheduled buses")
+	} else if nextDeparture.Actual == true {
 		fmt.Println(nextDeparture.DepartureText)
 	} else {
 		fmt.Println("Next bus @", nextDeparture.DepartureText)
 	}
 
-	/* 	TODO 1. Make the 'else' return next time in minutes
-		TODO 2. Document code
-	 	TODO 3. Handle 'no more buses for the day'
-	*/
+	//	TODO 1. Make the 'else' return next time in minutes
+
 }

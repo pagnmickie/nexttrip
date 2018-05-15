@@ -1,12 +1,12 @@
 package nextrip
 
 import (
-	"net/http"
-	"io/ioutil"
-	"encoding/json"
-	"log"
 	"errors"
 	"fmt"
+	"net/http"
+	"log"
+	"io/ioutil"
+	"encoding/json"
 )
 
 type Departure struct {
@@ -26,6 +26,8 @@ type Departure struct {
 
 const departuresUrl = "http://svc.metrotransit.org/NexTrip/%s/%s/%s?format=json"
 
+// Returns next departure time for a given route, direction and stop
+// May return an error if no departures are found
 func GetNextDeparture(routeId string, directionId string, stopId string) (*Departure, error) {
 	response := getDepartures(routeId, directionId, stopId)
 	departures := convertResponseToDepartures(response)
@@ -37,6 +39,7 @@ func GetNextDeparture(routeId string, directionId string, stopId string) (*Depar
 	return nil, errors.New("departures not found")
 }
 
+// Makes an API call to NexTrip and returns response body
 func getDepartures(routeId string, directionId string, stopId string) []byte {
 	customUrl := fmt.Sprintf(departuresUrl, routeId, directionId, stopId)
 	response, err := http.Get(customUrl)
@@ -61,6 +64,7 @@ func getDepartures(routeId string, directionId string, stopId string) []byte {
 	return nil
 }
 
+// Converts response body to a slice of Departures
 func convertResponseToDepartures(response []byte) []Departure {
 	departures := []Departure{}
 	err := json.Unmarshal(response, &departures)
