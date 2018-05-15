@@ -17,6 +17,8 @@ type Route struct {
 
 const routesUrl = "http://svc.metrotransit.org/NexTrip/Routes?format=json"
 
+// Returns route by description
+// May return an error if no routes are found
 func FindRouteByDescription(description string) (*Route, error) {
 	response := getRoutes()
 	routes := convertResponseToRoute(response)
@@ -31,6 +33,7 @@ func FindRouteByDescription(description string) (*Route, error) {
 	return nil, errors.New("Route not found: " + description)
 }
 
+// Makes an API call to NexTrip and returns response body
 func getRoutes() []byte {
 	response, err := http.Get(routesUrl)
 
@@ -54,6 +57,7 @@ func getRoutes() []byte {
 	return nil
 }
 
+// Converts response body to a slice of Routes
 func convertResponseToRoute(response []byte) []Route {
 	routes := []Route{}
 	err := json.Unmarshal(response, &routes)

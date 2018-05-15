@@ -17,6 +17,8 @@ type Direction struct {
 
 const directionsUrl = "http://svc.metrotransit.org/NexTrip/Directions/%s?format=json"
 
+// Returns route direction for a given route
+// May return an error if no directions are found
 func FindRouteDirectionByText(routeId string, directionText string) (*Direction, error) {
 	response := getDirections(routeId)
 	directions := convertResponseToDirection(response)
@@ -30,6 +32,7 @@ func FindRouteDirectionByText(routeId string, directionText string) (*Direction,
 	return nil, errors.New("Direction not found: " + directionText)
 }
 
+// Makes an API call to NexTrip and returns response body
 func getDirections(routeId string) []byte {
 	customUrl := fmt.Sprintf(directionsUrl, routeId)
 	response, err := http.Get(customUrl)
@@ -54,6 +57,7 @@ func getDirections(routeId string) []byte {
 	return nil
 }
 
+// Converts response body to a slice of Directions
 func convertResponseToDirection(response []byte) []Direction {
 	directions := []Direction{}
 	err := json.Unmarshal(response, &directions)
