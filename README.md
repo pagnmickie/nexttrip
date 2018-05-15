@@ -18,7 +18,7 @@ $ go run nextbus.go "Express - Target - Hwy 252 and 73rd Av P&R - Mpls" "Target 
 $ 2 Minutes
 ``
 
-_(note that that won’t return anything if the last bus for the day has already left)_
+_(note that it will return a message that there are no more buses if the last bus for the day has already left)_
 
 Or if you wanted to take the light rail from downtown to the Mall of America or the Airport:
 ``
