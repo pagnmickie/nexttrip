@@ -5,6 +5,10 @@ import (
 	"log"
 	"./nextrip"
 	"fmt"
+	"strings"
+	"time"
+	"regexp"
+	"strconv"
 )
 
 //curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
@@ -44,11 +48,27 @@ func main() {
 	if err3 != nil {
 		fmt.Println("There are no more scheduled buses")
 	} else if nextDeparture.Actual == true {
-		fmt.Println(nextDeparture.DepartureText)
+		departure := strings.Replace(nextDeparture.DepartureText, "Min", "Minutes", 1)
+		fmt.Println(departure)
 	} else {
-		fmt.Println("Next bus @", nextDeparture.DepartureText)
+		departure := convertJsDate(nextDeparture.DepartureTime)
+		now := time.Now()
+		difference := departure.Sub(now).Minutes()
+		// Round minutes by adding .5 minutes so it won't always round down
+		fmt.Printf("%d Minutes\n", int64(difference+0.5))
+	}
+}
+
+// https://github.com/Skovy/metro-api-go
+// convert a EPOCH date representation to a golang Time
+func convertJsDate(jsDate string) *time.Time {
+	pattern := regexp.MustCompile(`Date\(([0-9]{13})-[0-9]{4}`)
+	if matched := pattern.FindStringSubmatch(jsDate); len(matched) > 0 {
+		if unixTimestamp, err := strconv.Atoi(matched[1][:10]); err == nil {
+			converted := time.Unix(int64(unixTimestamp), 0)
+			return &converted
+		}
 	}
 
-	//	TODO 1. Make the 'else' return next time in minutes
-
+	return nil
 }
