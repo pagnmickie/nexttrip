@@ -22,7 +22,7 @@ _(note that that won’t return anything if the last bus for the day has already
 
 Or if you wanted to take the light rail from downtown to the Mall of America or the Airport:
 ``
-$ nextbus.py "METRO Blue Line" "Target Field Station Platform 1" "south"
+$ go run nextbus.go "METRO Blue Line" "Target Field Station Platform 1" "south"
  ``
  
  ``
