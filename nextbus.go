@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./nextrip"
 	"fmt"
+	"github.com/pagnmickie/nextbus/nextrip"
 	"log"
 	"os"
 	"regexp"
@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-//curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
+//EXAMPLE: curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
 
 func main() {
 	args := os.Args[1:]
