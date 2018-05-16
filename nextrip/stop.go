@@ -1,13 +1,13 @@
 package nextrip
 
 import (
-	"strings"
+	"encoding/json"
 	"errors"
 	"fmt"
-	"net/http"
-	"log"
 	"io/ioutil"
-	"encoding/json"
+	"log"
+	"net/http"
+	"strings"
 )
 
 // stop struct

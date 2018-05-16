@@ -1,14 +1,14 @@
 package main
 
 import (
-	"os"
-	"log"
 	"./nextrip"
 	"fmt"
-	"strings"
-	"time"
+	"log"
+	"os"
 	"regexp"
 	"strconv"
+	"strings"
+	"time"
 )
 
 //curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
