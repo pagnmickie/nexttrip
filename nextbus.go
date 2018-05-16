@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./nextrip"
 	"fmt"
+	"github.com/pagnmickie/nextbus/nextrip"
 	"log"
 	"os"
 	"regexp"
