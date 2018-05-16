@@ -1,12 +1,12 @@
 package nextrip
 
 import (
-	"fmt"
-	"net/http"
-	"log"
-	"io/ioutil"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
 	"strings"
 )
 

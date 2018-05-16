@@ -1,12 +1,12 @@
 package nextrip
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
-	"net/http"
-	"log"
 	"io/ioutil"
-	"encoding/json"
+	"log"
+	"net/http"
 )
 
 type Departure struct {
