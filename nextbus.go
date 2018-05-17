@@ -11,7 +11,9 @@ import (
 	"time"
 )
 
-//EXAMPLE: curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
+//EXAMPLE: go run nextbus.go "METRO Blue Line" "Target Field Station Platform 1" "south"
+// curl -kv "http://svc.metrotransit.org/NexTrip/901/1/TF12?format=json"
+// curl -kv "http://svc.metrotransit.org/NexTrip/94/2/6SHE?format=json"
 
 func main() {
 	args := os.Args[1:]
